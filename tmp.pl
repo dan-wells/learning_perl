@@ -2,45 +2,29 @@
 use utf8;
 use strict;
 
-# reading from <STDIN> in scalar context takes the next line only
-# or only accepts one line from terminal, no ctrl-d required
-# print "Give us a line: ";
-# my $line;
-# chomp($line = <STDIN>);
-# print "You said \"$line\"!\n";
-
-
-# to read all lines until the end of a file, just do
-# while (<STDIN>) {
-# 	print "I saw $_";
+# unless = if not
+# unless ($month eq "february") {
+#     print "this month has at least 30 days\n";
 # }
+# can have an else clause too (so for if $month does eq feb)
+
+# until = opposite of while
+my $i = 1;
+my $j = 9;
+until ($i > $j) {
+    $i *= 2;
+    print "$i\n";
+    # ends when $i = 16
+}
 
 
-# evaluating line input in a list context loads all lines into an array before executing following block
-# -> so can be expensive
-# this will wait for a ctrl-d before printing anything
-# foreach (<STDIN>) {
-# 	print "I saw $_";
-# }
+# can use statement modifiers instead of control blocks:
+#   print "$n is a negative number.\n" if $n < 0;
+#   &error("Invalid input") unless &valid($input); - execute error sub if input not found valid
+#   $i *= 2 until $i > $j;
+my $n = 1;
+print " ", ($n += 2) while $n < 10; # prints ` 3 5 6 7 9` -> print space, increment $n then print new value
+#   &greet($_) foreach @person; - can only use $_ control variable using this syntax
 
 
-# the diamond operator <> will read input serially from command line options
-# e.g. `./my_script one two three` reads input from files one two three as if they were concatenated
-# can also read from stdin (`-` on command line) or a pipe
-# while (<>) {
-# 	chomp; # chomp works on $_ with no other arguments
-# 	print "It was $_ in file $ARGV that I saw!\n"; # $ARGV contains current argument (=filename here)
-# }
-
-# could parse contents of @ARGV to look for e.g. args beginning - => option flags
-# good for simple things but otherwise should use Getopt module
-
-# can also populate @ARGV explicitly and read from that using <>
-@ARGV = qw( file1.txt file2.txt file3.txt );
-
-
-# nb. difference between printing and interpolating arrays
-print @ARGV; # concatenates items with no spaces
-print "@ARGV"; # interpolated result inserts spaces between items
-
-# p.89 formatted output with printf
+# naked block p.180
