@@ -1,0 +1,4 @@
+you get this whole line
+but not after EOL on this one
+and won't ask again after __END__
+not in this file
